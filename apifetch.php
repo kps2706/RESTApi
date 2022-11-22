@@ -3,10 +3,10 @@
 
 try {
     //code...
-    header('Content-type : application/json');
-    header('Acess-Control-Allow-Origin: *');
+    header('Content-Type: application/json; ');
+    header('Access-Control-Allow-Origin: *');
 
-    include_once 'connectdb.php';
+    include "connectdb.php";
 
     $sql = "SELECT * FROM tbl_users";
 
@@ -14,6 +14,7 @@ try {
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
         echo json_encode($row);
     } else {
         echo json_encode(array('message' => 'No Record Found.', 'status' => false));
