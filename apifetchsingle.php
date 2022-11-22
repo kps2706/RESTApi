@@ -3,12 +3,18 @@
 
 try {
     //code...
+
+
     header('Content-Type: application/json; ');
     header('Access-Control-Allow-Origin: *');
 
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $ref_symbol = $data['s_symbol'];
+
     include "connectdb.php";
 
-    $sql = "SELECT * FROM tbl_users";
+    $sql = "SELECT * FROM tbl_nse WHERE symbol ='{$ref_symbol}'";
 
     $result = mysqli_query($conn, $sql) or die("SQL Query failed");
 
